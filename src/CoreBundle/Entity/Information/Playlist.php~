@@ -45,7 +45,7 @@ class Playlist
 
     /**
     *@ORM\ManyToMany( targetEntity = "User", inversedBy="Playlists" )
-    *@ORM\JoinColumn( name = "User_Playlists" )
+    *@ORM\JoinColumn( name = "User_PLaylists" )
     */
     private $Users;
 
@@ -106,69 +106,5 @@ class Playlist
     {
         return $this->isPublic;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set creatorId
-     *
-     * @param \CoreBundle\Entity\Information\User $creatorId
-     *
-     * @return Playlist
-     */
-    public function setCreatorId(\CoreBundle\Entity\Information\User $creatorId = null)
-    {
-        $this->CreatorId = $creatorId;
-
-        return $this;
-    }
-
-    /**
-     * Get creatorId
-     *
-     * @return \CoreBundle\Entity\Information\User
-     */
-    public function getCreatorId()
-    {
-        return $this->CreatorId;
-    }
-
-    /**
-     * Add user
-     *
-     * @param \CoreBundle\Entity\Information\User $user
-     *
-     * @return Playlist
-     */
-    public function addUser(\CoreBundle\Entity\Information\User $user)
-    {
-        $this->Users[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \CoreBundle\Entity\Information\User $user
-     */
-    public function removeUser(\CoreBundle\Entity\Information\User $user)
-    {
-        $this->Users->removeElement($user);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->Users;
-    }
 }
+

@@ -4,6 +4,7 @@ namespace CoreBundle\Entity\User;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -23,6 +24,16 @@ use Doctrine\ORM\Mapping as ORM;
     protected $id;
 
 
+    /**
+    *
+    *@ORM\OneToMany( targetEntity="Playlist", mappedBy="CreatorId" )
+    */
+    protected $PlaylistsCreated;
+
+    /**
+    *@ORM\ManyToMany(targetEntity="Playlist", mappedBy="Playlists")
+    */
+    protected $Playlists;
 
     /**
      * Get id
@@ -34,10 +45,80 @@ use Doctrine\ORM\Mapping as ORM;
         return $this->id;
     }
 
+
+
     public function __construct()
     {
         parent::__construct();
+        $this->Playlist = new ArrayCollection();
         // your own logic
     }
-}
 
+    /**
+     * Add playlistsCreated
+     *
+     * @param \CoreBundle\Entity\User\Playlist $playlistsCreated
+     *
+     * @return User
+     */
+    public function addPlaylistsCreated(\CoreBundle\Entity\User\Playlist $playlistsCreated)
+    {
+        $this->PlaylistsCreated[] = $playlistsCreated;
+
+        return $this;
+    }
+
+    /**
+     * Remove playlistsCreated
+     *
+     * @param \CoreBundle\Entity\User\Playlist $playlistsCreated
+     */
+    public function removePlaylistsCreated(\CoreBundle\Entity\User\Playlist $playlistsCreated)
+    {
+        $this->PlaylistsCreated->removeElement($playlistsCreated);
+    }
+
+    /**
+     * Get playlistsCreated
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaylistsCreated()
+    {
+        return $this->PlaylistsCreated;
+    }
+
+    /**
+     * Add playlist
+     *
+     * @param \CoreBundle\Entity\User\Playlist $playlist
+     *
+     * @return User
+     */
+    public function addPlaylist(\CoreBundle\Entity\User\Playlist $playlist)
+    {
+        $this->Playlists[] = $playlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove playlist
+     *
+     * @param \CoreBundle\Entity\User\Playlist $playlist
+     */
+    public function removePlaylist(\CoreBundle\Entity\User\Playlist $playlist)
+    {
+        $this->Playlists->removeElement($playlist);
+    }
+
+    /**
+     * Get playlists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaylists()
+    {
+        return $this->Playlists;
+    }
+}

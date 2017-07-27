@@ -1,0 +1,57 @@
+<?php
+
+namespace CoreBundle\Entity\User;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user_user")
+ * @ORM\Entity(repositoryClass="CoreBundle\Repository\User\UserRepository")
+ */
+ class User extends BaseUser
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+    /**
+    *
+    *@ORM\OneToMany( targetEntity="Playlist", mappedBy="CreatorId" )
+    */
+    protected $PlaylistsCreated;
+
+    /**
+    *@ORM\ManyToMany(targetEntity="Playlist", mappedBy="Playlists")
+    */
+    protected $Playlists;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->Playlist = new ArrayCollection();
+        // your own logic
+    }
+}
+
