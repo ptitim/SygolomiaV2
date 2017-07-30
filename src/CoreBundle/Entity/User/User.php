@@ -25,15 +25,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
     /**
-    *
-    *@ORM\OneToMany( targetEntity="Playlist", mappedBy="CreatorId" )
+    *@ORM\OneToMany( targetEntity="CoreBundle\Entity\Information\Playlist", mappedBy="CreatorId" )
     */
     protected $PlaylistsCreated;
-
-    /**
-    *@ORM\ManyToMany(targetEntity="Playlist", mappedBy="Playlists")
-    */
-    protected $Playlists;
 
     /**
      * Get id

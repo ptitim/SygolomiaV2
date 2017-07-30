@@ -28,6 +28,14 @@ class Ratings
      */
     private $rating;
 
+    /**
+    *@var int
+    *
+    *@ORM\ManyToMany(targetEntity="CoreBundle\Entity\User\User", cascade={"persist"})
+    *
+    */
+    private $Users;
+
 
     /**
      * Get id

@@ -38,16 +38,21 @@ class Playlist
 
     /**
     *
-    *@ORM\ManyToOne( targetEntity="User", inversedBy="PlaylistsCreated")
+    *@ORM\ManyToOne( targetEntity="CoreBundle\Entity\User\User", inversedBy="Playlists")
     *@ORM\JoinColumn( name="idUser" , referencedColumnName="id" )
     */
     private $CreatorId;
 
     /**
-    *@ORM\ManyToMany( targetEntity = "User", inversedBy="Playlists" )
-    *@ORM\JoinColumn( name = "User_Playlists" )
+    *@ORM\ManyToMany( targetEntity = "CoreBundle\Entity\User\User" )
     */
     private $Users;
+
+    /**
+    *@ORM\ManyToMany( targetEntity = "Ratings", cascade={"persist"})
+    */
+    private $ratings;
+
 
     /**
      * Get id
