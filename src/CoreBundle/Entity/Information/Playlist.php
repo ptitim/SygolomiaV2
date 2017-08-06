@@ -23,14 +23,12 @@ class Playlist
 
     /**
      * @var string
-     *
      * @ORM\Column(name="Name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var bool
-     *
      * @ORM\Column(name="IsPublic", type="boolean")
      */
     private $isPublic = false;

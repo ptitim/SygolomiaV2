@@ -37,6 +37,12 @@ class Artwork
 
 
     /**
+    *@ORM\OneToMany(targetEntity="Track", mappedBy="ArtworkId")
+    *
+    */
+    private $tracks;
+
+    /**
      * Get id
      *
      * @return int

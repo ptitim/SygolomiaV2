@@ -49,6 +49,32 @@ class Track
      */
     private $fileLocation;
 
+    /**
+    *@ORM\ManyToMany(targetEntity="Album", cascafe={"persist"})
+    */
+    private $albums;
+
+    /**
+    *@ORM\ManyToMany(targetEntity="Mood", cascade={"persist"})
+    */
+    private $moods;
+
+    /**
+    *@ORM\ManyToMany(targetEntity="Genre", cascade={"persist"})
+    */
+    private $Genres;
+
+    /**
+    *@ORM\ManyToMAny(targetEntity="Artist", cascade={"persist"})
+    */
+    private $Artists;
+
+    /**
+    *@ORM\ManyToOne(targetEntity="Artwork", inversedBy="Tracks")
+    *@ORM\JoinColumn( name="artowokId" , referencedColumnName="id" )
+    */
+    private $artworkId;
+
 
     /**
      * Get id
